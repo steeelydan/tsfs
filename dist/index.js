@@ -21,17 +21,17 @@ export const authentication = {
     /**
      * Sets up Passport.js authentication.
      *
-     * Requires session, cookie && request parser middleware in front of itself!
+     * Requires prior setup: **cookies**, **requestParsers**, **session**, and your app's **models**
      *
      * @param app: Express application
      * @param User: User model
      */
     setup: setupAuthentication,
     /**
-     * Middleware to authenticate a request if username & password fields in query or body are correct.
+     * Middleware to authenticate a request if **username** & **password** fields in query or body are correct.
      * Typically used at the /login endpoint.
      * Wrapper around Passport's authenticate('local').
-     * Creates a session
+     * Creates a session. Requires authentication to be setup.
      */
     authenticateLocal,
     /**
