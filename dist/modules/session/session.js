@@ -1,0 +1,24 @@
+import expressSession from 'express-session';
+import connectSessionSequelize from 'connect-session-sequelize';
+export const setup = (app, sequelize, sessionMaxAge) => {
+    const SequelizeStore = connectSessionSequelize(expressSession.Store);
+    const sessionStore = new SequelizeStore({ db: sequelize });
+    sessionStore.sync();
+    if (!process.env.SESSION_SECRET) {
+        throw new Error('Error initializing session middleware: No session secret set in .env');
+    }
+    const sessionMiddleware = expressSession({
+        secret: process.env.SESSION_SECRET,
+        saveUninitialized: false,
+        resave: false,
+        store: sessionStore,
+        proxy: process.env.NODE_ENV === 'production',
+        cookie: {
+            sameSite: true,
+            httpOnly: true,
+            maxAge: sessionMaxAge,
+            secure: process.env.NODE_ENV === 'test' ? false : true
+        }
+    });
+    app.use(sessionMiddleware);
+};

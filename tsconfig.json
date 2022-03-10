@@ -1,0 +1,29 @@
+{
+    "include": ["./src"],
+    "exclude": ["./dist"],
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "lib": ["es2020"],
+        "module": "es2020",
+        "target": "es2020",
+        "declaration": true,
+
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowJs": false,
+        "resolveJsonModule": false,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": false,
+        "skipLibCheck": true,
+
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true
+    }
+}
