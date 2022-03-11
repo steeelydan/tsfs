@@ -104,7 +104,7 @@ export declare const httpServer: {
      * @param app: Express application
      * @returns a Node HTTP(S) server
      */
-    create: (app: import("express").Express) => import("http").Server | import("https").Server;
+    create: (app: import("express").Express, devSslKey?: string | undefined, devSslCert?: string | undefined) => import("http").Server | import("https").Server;
 };
 export declare const i18n: {
     setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;

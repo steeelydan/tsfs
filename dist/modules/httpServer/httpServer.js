@@ -1,13 +1,14 @@
 import http from 'http';
 import https from 'https';
-import fs from 'fs';
-import path from 'path';
-export const create = (app) => {
+export const create = (app, devSslKey, devSslCert) => {
     let server;
     if (process.env.NODE_ENV === 'development') {
+        if (!devSslKey || !devSslCert) {
+            throw new Error('Must specify ssl key & cert for dev server.');
+        }
         server = https.createServer({
-            key: fs.readFileSync(path.join(__dirname, '../../../ssl-dev/server.key'), 'utf-8'),
-            cert: fs.readFileSync(path.join(__dirname, '../../../ssl-dev/server.cert'), 'utf-8')
+            key: devSslKey,
+            cert: devSslCert
         }, app);
     }
     else {
