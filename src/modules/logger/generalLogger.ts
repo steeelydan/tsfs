@@ -1,9 +1,8 @@
 import path from 'path';
 import winston from 'winston';
-import { Logger } from 'winston';
-import { TSFSPathConfig } from '../../coreTypes';
+import { TSFSLogger, TSFSPathConfig } from '../../coreTypes';
 
-export const create = (tsfsPathConfig: TSFSPathConfig): Logger => {
+export const create = (tsfsPathConfig: TSFSPathConfig): TSFSLogger => {
     if (!tsfsPathConfig.logfileDirPath) {
         throw new Error('Logfile dir has to be configured');
     }

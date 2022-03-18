@@ -1,3 +1,3 @@
-import { Logger } from 'winston';
 import { Express } from 'express';
-export declare const setup: (generalLogger: Logger, app: Express) => void;
+import { TSFSLogger } from '../../coreTypes';
+export declare const setup: (generalLogger: TSFSLogger, app: Express) => void;

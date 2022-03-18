@@ -1,3 +1,5 @@
+import { Logger } from 'winston';
+
 export type CreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type TSFSUserRole = 'admin' | 'user';
@@ -13,6 +15,8 @@ declare global {
         interface User extends TSFSRequestUser {}
     }
 }
+
+export type TSFSLogger = Logger;
 
 export type TSFSPathConfig = {
     publicDirPath?: string;
