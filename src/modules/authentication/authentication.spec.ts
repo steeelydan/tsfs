@@ -8,9 +8,9 @@ import { session } from '../..';
 import { cookies } from '../..';
 import { authentication } from '../..';
 import { requestParsers } from '../../';
-import { getTestDatabase } from '../../coreTestHelpers.js';
-import { CoreTestModels, initializeCoreTestModels } from '../../coreTestModels.js';
-import { TSFSRequestUser, TSFSUserRole } from '../../coreTypes';
+import { getTestDatabase } from '../../testHelpers.js';
+import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
+import { TSFSDbConfig, TSFSRequestUser, TSFSUserRole } from '../../types';
 import { mustBeAdmin, mustBeAuthenticated } from './middleware';
 
 let sequelize: Sequelize, models: CoreTestModels;
@@ -25,7 +25,7 @@ const getTestExpressApp = (models: CoreTestModels): Express => {
     return app;
 };
 
-const dbConfig = {
+const dbConfig: TSFSDbConfig = {
     test: {
         logging: false,
         storage: path.resolve('data/db-test.sqlite3'),

@@ -7,7 +7,7 @@ export default {
         '^(\\.{1,2}/.*)\\.js$': '$1'
     },
     globals: {
-        coreTestPathConfig: testPathConfig,
+        testPathConfig: testPathConfig,
         'ts-jest': {
             tsconfig: '<rootDir>/tsconfig.json',
             useESM: true

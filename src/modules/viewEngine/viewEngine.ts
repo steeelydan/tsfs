@@ -2,7 +2,7 @@ import { create } from 'express-handlebars';
 import i18next from 'i18next';
 import fs from 'fs';
 import { Express } from 'express';
-import { TSFSPathConfig } from '../../coreTypes';
+import { TSFSPathConfig } from '../../types';
 
 const setupHandlebars = (app: Express, manifestFilePath: string): void => {
     console.log('Client manifest updated.');

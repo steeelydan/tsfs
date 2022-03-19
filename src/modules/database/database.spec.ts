@@ -1,13 +1,14 @@
 import path from 'path';
 import { Sequelize } from 'sequelize/types';
-import { getTestDatabase } from '../../coreTestHelpers.js';
-import { CoreTestModels, initializeCoreTestModels } from '../../coreTestModels.js';
+import { getTestDatabase } from '../../testHelpers.js';
+import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
 import { database } from '../..';
+import { TSFSDbConfig } from '../../types.js';
 
 let sequelize: Sequelize;
 let models: CoreTestModels;
 
-const dbConfig = {
+const dbConfig: TSFSDbConfig = {
     test: {
         logging: false,
         storage: path.resolve('data/db-test.sqlite3'),

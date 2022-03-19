@@ -1,6 +1,6 @@
 import morgan from 'morgan';
 import { Express } from 'express';
-import { TSFSLogger } from '../../coreTypes';
+import { TSFSLogger } from '../../types';
 
 export const setup = (generalLogger: TSFSLogger, app: Express): void => {
     const requestLogger = morgan(

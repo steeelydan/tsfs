@@ -1,11 +1,12 @@
 import fs from 'fs';
 import { checks } from '../..';
-import { TestGlobal, ValidEnvValues } from '../../coreTypes';
+import { TestGlobal } from '../../testTypes';
+import { TSFSValidEnvValues } from '../../types';
 
 const testEnvVars = ['NODE_ENV', 'PORT', 'SESSION_SECRET'];
-const coreTestPathConfig = (global as unknown as TestGlobal).coreTestPathConfig;
+const coreTestPathConfig = (global as unknown as TestGlobal).testPathConfig;
 
-export const testValidEnvValues: ValidEnvValues = {
+export const testValidEnvValues: TSFSValidEnvValues = {
     NODE_ENV: ['development', 'production', 'test'],
     PORT: (port: string) => {
         return !isNaN(parseInt(port));

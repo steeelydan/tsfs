@@ -1,5 +1,5 @@
 import { DataTypes, Model, ModelAttributes, Sequelize } from 'sequelize';
-import { CreationAttributes, TSFSUserRole } from './coreTypes';
+import { TSFSCreationAttributes, TSFSUserRole } from './types';
 
 export interface ICoreTestUser {
     id: string;
@@ -8,7 +8,7 @@ export interface ICoreTestUser {
     password: string;
 }
 
-export class CoreTestUser extends Model<ICoreTestUser, CreationAttributes<ICoreTestUser>> implements ICoreTestUser {
+export class CoreTestUser extends Model<ICoreTestUser, TSFSCreationAttributes<ICoreTestUser>> implements ICoreTestUser {
     readonly id!: string;
     username!: string;
     role!: TSFSUserRole;

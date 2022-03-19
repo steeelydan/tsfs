@@ -1,6 +1,6 @@
 import path from 'path';
 import winston from 'winston';
-import { TSFSLogger, TSFSPathConfig } from '../../coreTypes';
+import { TSFSLogger, TSFSPathConfig } from '../../types';
 
 export const create = (tsfsPathConfig: TSFSPathConfig): TSFSLogger => {
     if (!tsfsPathConfig.logfileDirPath) {

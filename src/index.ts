@@ -17,7 +17,7 @@ import { setup as setupRequestParsers } from './modules/requestParsers/requestPa
 import { setup as setupSession } from './modules/session/session.js';
 import { setup as setupViewEngine } from './modules/viewEngine/viewEngine.js';
 
-export * from './coreTypes.js';
+export * from './types.js';
 
 export const authentication = {
     /**

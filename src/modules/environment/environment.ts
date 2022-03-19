@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
 import { checks } from '../../index.js';
-import { TSFSPathConfig, EnvVars, ValidEnvValues } from '../../coreTypes';
+import { TSFSPathConfig, TSFSRequiredEnvVars, TSFSValidEnvValues } from '../../types';
 
 export const setup = (
     tsfsPathConfig: TSFSPathConfig,
-    requiredEnvVars: EnvVars,
-    validEnvValues: ValidEnvValues,
+    requiredEnvVars: TSFSRequiredEnvVars,
+    validEnvValues: TSFSValidEnvValues,
     checkConfigFiles = true,
     checkEnv = true,
     checkPublicDir = true

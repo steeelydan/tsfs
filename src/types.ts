@@ -1,6 +1,6 @@
 import { Logger } from 'winston';
 
-export type CreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
+export type TSFSCreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type TSFSUserRole = 'admin' | 'user';
 
@@ -26,22 +26,18 @@ export type TSFSPathConfig = {
     logfileDirPath?: string;
 };
 
-export type EnvVars = string[];
+export type TSFSRequiredEnvVars = string[];
 
-export type ValidEnvValues = Record<string, string[] | ((...args: string[]) => boolean)>;
+export type TSFSValidEnvValues = Record<string, string[] | ((...args: string[]) => boolean)>;
 
-export type DbOptions = {
+export type TSFSDbOptions = {
     logging: boolean;
     storage: string;
-    dialect: string;
+    dialect: 'sqlite';
 };
 
-export type DbConfig = {
-    development?: DbOptions;
-    test?: DbOptions;
-    production?: DbOptions;
-};
-
-export type TestGlobal = {
-    coreTestPathConfig: TSFSPathConfig;
+export type TSFSDbConfig = {
+    development?: TSFSDbOptions;
+    test?: TSFSDbOptions;
+    production?: TSFSDbOptions;
 };

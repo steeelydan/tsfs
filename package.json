@@ -2,7 +2,7 @@
     "name": "@steeelydan/tsfs",
     "description": "Full Stack TypeScript Helpers",
     "author": "steeelydan",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "license": "AGPL-3.0-only",
     "type": "module",
     "private": true,

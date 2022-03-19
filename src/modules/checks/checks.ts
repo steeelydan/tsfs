@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { checkIfPathExistsAndIsAbsolute } from '../../helpers.js';
-import { TSFSPathConfig, EnvVars, ValidEnvValues } from '../../coreTypes';
+import { TSFSPathConfig, TSFSRequiredEnvVars, TSFSValidEnvValues } from '../../types';
 
 const checkPathConfig = (tsfsPathConfig: TSFSPathConfig): void => {
     for (let i = 0; i < Object.keys(tsfsPathConfig).length; i++) {
@@ -32,7 +32,7 @@ export const checkPublicDir = (tsfsPathConfig: TSFSPathConfig): void => {
     }
 };
 
-export const checkEnv = (requiredEnvVars: EnvVars | undefined, validEnvValues: ValidEnvValues | undefined): void => {
+export const checkEnv = (requiredEnvVars: TSFSRequiredEnvVars | undefined, validEnvValues: TSFSValidEnvValues | undefined): void => {
     if (!requiredEnvVars || !validEnvValues) {
         throw new Error('Required environment vars & valid environment values have to be configured.');
     }

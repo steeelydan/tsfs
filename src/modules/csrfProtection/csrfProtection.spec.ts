@@ -5,9 +5,10 @@ import { cookies } from '../..';
 import { csrfProtection } from '../..';
 import { requestParsers } from '../..';
 import { session } from '../..';
-import { getTestDatabase } from '../../coreTestHelpers.js';
+import { getTestDatabase } from '../../testHelpers.js';
+import { TSFSDbConfig } from '../../types';
 
-export const dbConfig = {
+export const dbConfig: TSFSDbConfig = {
     test: {
         logging: false,
         storage: path.resolve('data/db-test.sqlite3'),

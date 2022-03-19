@@ -1,15 +1,17 @@
-import { EnvVars, TestGlobal, ValidEnvValues } from '../../coreTypes';
+import { TSFSRequiredEnvVars, TSFSValidEnvValues } from '../../types';
 import { environment } from '../..';
+import { TestGlobal } from '../../testTypes';
 
-const coreTestPathConfig = (global as unknown as TestGlobal).coreTestPathConfig;
+const testPathConfig = (global as unknown as TestGlobal).testPathConfig;
 
 describe('core: environment', () => {
-    const testRequiredEnvVars: EnvVars = ['NODE_ENV'];
-    const testValidEnvValues: ValidEnvValues = { NODE_ENV: ['development', 'production', 'test'] };
+    const testRequiredEnvVars: TSFSRequiredEnvVars = ['NODE_ENV'];
+    const testValidEnvValues: TSFSValidEnvValues = { NODE_ENV: ['development', 'production', 'test'] };
 
     it('prepares dotenv environment', () => {
+        expect(testPathConfig).toBeTruthy();
         expect(process.env.SESSION_SECRET).toBeFalsy();
-        environment.setup(coreTestPathConfig, testRequiredEnvVars, testValidEnvValues);
+        environment.setup(testPathConfig, testRequiredEnvVars, testValidEnvValues);
         expect(process.env.SESSION_SECRET).toBeTruthy();
     });
 });
