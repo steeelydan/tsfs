@@ -16,7 +16,7 @@ import { authRateLimiter } from './modules/rateLimiting/rateLimiters.js';
 import { setup as setupRequestParsers } from './modules/requestParsers/requestParsers.js';
 import { setup as setupSession } from './modules/session/session.js';
 import { setup as setupViewEngine } from './modules/viewEngine/viewEngine.js';
-export * from './coreTypes.js';
+export * from './types.js';
 export const authentication = {
     /**
      * Sets up Passport.js authentication.

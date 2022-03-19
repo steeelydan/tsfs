@@ -1,7 +1,7 @@
 /// <reference types="express" />
 /// <reference types="qs" />
 /// <reference types="node" />
-export * from './coreTypes.js';
+export * from './types.js';
 export declare const authentication: {
     /**
      * Sets up Passport.js authentication.
@@ -47,20 +47,20 @@ export declare const checks: {
     /**
      * Verifies existence of required config files
      */
-    checkConfigFiles: (tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig) => void;
+    checkConfigFiles: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
     /**
      * Checks if all required environment variables are set.
      *
      * @param requiredEnvVars List of required environment variables
      * @param validEnvValues Valid values for env variables. Can be an array of values or a function returning true if value is valid.
      */
-    checkEnv: (requiredEnvVars: import("./coreTypes.js").EnvVars | undefined, validEnvValues: import("./coreTypes.js").ValidEnvValues | undefined) => void;
+    checkEnv: (requiredEnvVars: import("./types.js").TSFSRequiredEnvVars | undefined, validEnvValues: import("./types.js").TSFSValidEnvValues | undefined) => void;
     /**
      * Checks existence of public dir in build folder.
      *
      * If not exists, probably client has not been built yet.
      */
-    checkPublicDir: (tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig) => void;
+    checkPublicDir: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
 };
 export declare const cookies: {
     setup: (app: import("express").Express) => void;
@@ -82,13 +82,13 @@ export declare const database: {
      *
      * @returns Sequelize instance
      */
-    create: (dbConfig: import("./coreTypes.js").DbConfig) => Promise<import("sequelize/types").Sequelize>;
+    create: (dbConfig: import("./types.js").TSFSDbConfig) => Promise<import("sequelize/types").Sequelize>;
 };
 export declare const environment: {
     /**
      * Reads the .env file and prepares process.env, checks if all environment variables are set & checks if public dir exists
      */
-    setup: (tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig, requiredEnvVars: import("./coreTypes.js").EnvVars, validEnvValues: import("./coreTypes.js").ValidEnvValues, checkConfigFiles?: boolean, checkEnv?: boolean, checkPublicDir?: boolean) => void;
+    setup: (tsfsPathConfig: import("./types.js").TSFSPathConfig, requiredEnvVars: import("./types.js").TSFSRequiredEnvVars, validEnvValues: import("./types.js").TSFSValidEnvValues, checkConfigFiles?: boolean, checkEnv?: boolean, checkPublicDir?: boolean) => void;
 };
 export declare const headers: {
     setup: (app: import("express").Express, helmetConfiguration?: Readonly<import("helmet").HelmetOptions> | undefined) => void;
@@ -110,7 +110,7 @@ export declare const i18n: {
     setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;
 };
 export declare const loggers: {
-    createGeneralLogger: (tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig) => import("winston").Logger;
+    createGeneralLogger: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => import("winston").Logger;
     setupRequestLogger: (generalLogger: import("winston").Logger, app: import("express").Express) => void;
 };
 export declare const performance: {
@@ -124,7 +124,7 @@ export declare const performance: {
     useCompression: (app: import("express").Express) => void;
 };
 export declare const publicFiles: {
-    serve: (app: import("express").Express, tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig) => void;
+    serve: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
 };
 export declare const rateLimiters: {
     authRateLimiter: import("express-rate-limit").RateLimitRequestHandler;
@@ -148,5 +148,5 @@ export declare const session: {
     setup: (app: import("express").Express, sequelize: import("sequelize/types").Sequelize, sessionMaxAge: number) => void;
 };
 export declare const viewEngine: {
-    setup: (app: import("express").Express, tsfsPathConfig: import("./coreTypes.js").TSFSPathConfig) => void;
+    setup: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
 };
