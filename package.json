@@ -5,7 +5,6 @@
     "version": "0.0.9",
     "license": "GPLV3",
     "type": "module",
-    "private": true,
     "engines": {
         "node": ">= 14.0.0"
     },
