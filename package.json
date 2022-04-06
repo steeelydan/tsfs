@@ -2,7 +2,11 @@
     "name": "@steeelydan/tsfs",
     "description": "Full Stack TypeScript Helpers",
     "author": "steeelydan",
-    "version": "0.0.9",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:steeelydan/tsfs.git"
+    },
+    "version": "0.0.10",
     "license": "GPLV3",
     "type": "module",
     "engines": {
