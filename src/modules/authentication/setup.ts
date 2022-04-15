@@ -1,4 +1,4 @@
-import passport from 'passport';
+import passport, { PassportStatic } from 'passport';
 import { Express } from 'express';
 import * as PassportLocal from 'passport-local';
 import bcrypt from 'bcryptjs';
@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 const setup = (
     app: Express,
     User: { findOne: (where: { where: { username?: string; id?: string } }) => any } /* FIXME */
-): void => {
+): { passport: PassportStatic } => {
     const LocalStrategy = PassportLocal.Strategy;
 
     const verifyCallback = async (
@@ -61,6 +61,8 @@ const setup = (
 
     app.use(passport.initialize());
     app.use(passport.session());
+
+    return { passport };
 };
 
 export { setup };

@@ -40,5 +40,6 @@ const setup = (app, User /* FIXME */) => {
     });
     app.use(passport.initialize());
     app.use(passport.session());
+    return { passport };
 };
 export { setup };

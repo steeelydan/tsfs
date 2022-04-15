@@ -25,6 +25,8 @@ export const authentication = {
      *
      * @param app: Express application
      * @param User: User model
+     *
+     * @returns {passport: PassportStatic}
      */
     setup: setupAuthentication,
     /**
@@ -152,6 +154,8 @@ export const session = {
      * @param app Express application
      * @param sequelize Sequelize instance
      * @param config Global app config
+     *
+     * @returns {sessionMiddleware: RequestHandler}
      */
     setup: setupSession
 };

@@ -21,4 +21,5 @@ export const setup = (app, sequelize, sessionMaxAge) => {
         }
     });
     app.use(sessionMiddleware);
+    return { sessionMiddleware };
 };

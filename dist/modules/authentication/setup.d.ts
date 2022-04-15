@@ -1,3 +1,4 @@
+import passport, { PassportStatic } from 'passport';
 import { Express } from 'express';
 declare const setup: (app: Express, User: {
     findOne: (where: {
@@ -6,5 +7,7 @@ declare const setup: (app: Express, User: {
             id?: string;
         };
     }) => any;
-}) => void;
+}) => {
+    passport: PassportStatic;
+};
 export { setup };

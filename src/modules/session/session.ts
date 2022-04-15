@@ -1,9 +1,13 @@
 import { Sequelize } from 'sequelize';
-import { Express } from 'express';
+import { Express, RequestHandler } from 'express';
 import expressSession from 'express-session';
 import connectSessionSequelize from 'connect-session-sequelize';
 
-export const setup = (app: Express, sequelize: Sequelize, sessionMaxAge: number): void => {
+export const setup = (
+    app: Express,
+    sequelize: Sequelize,
+    sessionMaxAge: number
+): { sessionMiddleware: RequestHandler } => {
     const SequelizeStore = connectSessionSequelize(expressSession.Store);
 
     const sessionStore = new SequelizeStore({ db: sequelize });
@@ -29,4 +33,6 @@ export const setup = (app: Express, sequelize: Sequelize, sessionMaxAge: number)
     });
 
     app.use(sessionMiddleware);
+
+    return { sessionMiddleware };
 };

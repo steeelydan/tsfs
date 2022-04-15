@@ -1,4 +1,5 @@
 /// <reference types="express" />
+/// <reference types="passport" />
 /// <reference types="qs" />
 /// <reference types="node" />
 export * from './types.js';
@@ -10,6 +11,8 @@ export declare const authentication: {
      *
      * @param app: Express application
      * @param User: User model
+     *
+     * @returns {passport: PassportStatic}
      */
     setup: (app: import("express").Express, User: {
         findOne: (where: {
@@ -18,7 +21,9 @@ export declare const authentication: {
                 id?: string | undefined;
             };
         }) => any;
-    }) => void;
+    }) => {
+        passport: import("passport").PassportStatic;
+    };
     /**
      * Middleware to authenticate a request if **username** & **password** fields in query or body are correct.
      * Typically used at the /login endpoint.
@@ -144,8 +149,12 @@ export declare const session: {
      * @param app Express application
      * @param sequelize Sequelize instance
      * @param config Global app config
+     *
+     * @returns {sessionMiddleware: RequestHandler}
      */
-    setup: (app: import("express").Express, sequelize: import("sequelize/types").Sequelize, sessionMaxAge: number) => void;
+    setup: (app: import("express").Express, sequelize: import("sequelize/types").Sequelize, sessionMaxAge: number) => {
+        sessionMiddleware: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
+    };
 };
 export declare const viewEngine: {
     setup: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
