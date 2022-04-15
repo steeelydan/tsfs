@@ -12,7 +12,7 @@ import { create as createGeneralLogger } from './modules/logger/generalLogger.js
 import { setup as setupRequestLogger } from './modules/logger/requestLogger.js';
 import { useCompression } from './modules/performance/performance.js';
 import { serve as servePublicFiles } from './modules/publicFiles/publicFiles.js';
-import { authRateLimiter } from './modules/rateLimiting/rateLimiters.js';
+import { createRateLimiter } from './modules/rateLimiting/rateLimiting.js';
 import { setup as setupRequestParsers } from './modules/requestParsers/requestParsers.js';
 import { setup as setupSession } from './modules/session/session.js';
 import { setup as setupViewEngine } from './modules/viewEngine/viewEngine.js';
@@ -136,8 +136,13 @@ export const performance = {
 export const publicFiles = {
     serve: servePublicFiles
 };
-export const rateLimiters = {
-    authRateLimiter
+export const rateLimiting = {
+    /**
+     * Creates a rate limiting middleware with the specified allowed hits per minute.
+     *
+     * @param hitsPerMinute The allowed requests per minute per user/IP
+     */
+    createRateLimiter: createRateLimiter
 };
 export const requestParsers = {
     /**

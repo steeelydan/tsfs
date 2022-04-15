@@ -131,8 +131,13 @@ export declare const performance: {
 export declare const publicFiles: {
     serve: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
 };
-export declare const rateLimiters: {
-    authRateLimiter: import("express-rate-limit").RateLimitRequestHandler;
+export declare const rateLimiting: {
+    /**
+     * Creates a rate limiting middleware with the specified allowed hits per minute.
+     *
+     * @param hitsPerMinute The allowed requests per minute per user/IP
+     */
+    createRateLimiter: (hitsPerMinute: number) => import("express-rate-limit").RateLimitRequestHandler;
 };
 export declare const requestParsers: {
     /**
