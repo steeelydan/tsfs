@@ -6,8 +6,8 @@
         "type": "git",
         "url": "git@github.com:steeelydan/tsfs.git"
     },
-    "version": "0.0.12",
-    "license": "GPLV3",
+    "version": "0.0.13",
+    "license": "GPL-3.0-only",
     "type": "module",
     "engines": {
         "node": ">= 14.0.0"
@@ -28,9 +28,9 @@
     },
     "peerDependencies": {
         "@types/passport-local": "1.0.34",
-        "express": "4.17.2",
-        "sequelize": "6.16.0",
-        "sqlite3": "5.0.2"
+        "express": "4.17.3",
+        "sequelize": "6.19.0",
+        "sqlite3": "5.0.3"
     },
     "dependencies": {
         "bcryptjs": "2.4.3",
@@ -39,20 +39,20 @@
         "cookie-parser": "1.4.6",
         "csurf": "1.11.0",
         "dotenv": "16.0.0",
-        "express": "4.17.2",
+        "express": "4.17.3",
         "express-handlebars": "6.0.5",
-        "express-rate-limit": "6.2.0",
+        "express-rate-limit": "6.3.0",
         "express-session": "1.17.2",
         "helmet": "5.0.2",
-        "i18next": "21.6.11",
-        "i18next-http-middleware": "3.1.6",
+        "i18next": "21.6.16",
+        "i18next-http-middleware": "3.2.0",
         "is-absolute": "1.0.0",
         "morgan": "1.10.0",
         "passport": "0.5.2",
         "passport-local": "1.0.0",
         "sequelize": "6.19.0",
         "sqlite3": "5.0.3",
-        "winston": "3.5.1"
+        "winston": "3.7.2"
     },
     "devDependencies": {
         "@types/bcryptjs": "2.4.2",
