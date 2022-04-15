@@ -23,7 +23,8 @@
         "build": "rimraf ./dist/* && tsc --project ./tsconfig.build.json",
         "dev": "rimraf ./dist/* && tsc --project ./tsconfig.build.json --watch",
         "test": "jest ./src",
-        "lint": "tsc --noEmit && eslint ."
+        "lint": "tsc --noEmit && eslint .",
+        "prepublish": "npm run build"
     },
     "peerDependencies": {
         "@types/passport-local": "1.0.34",
