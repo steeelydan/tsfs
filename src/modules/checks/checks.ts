@@ -32,7 +32,10 @@ export const checkPublicDir = (tsfsPathConfig: TSFSPathConfig): void => {
     }
 };
 
-export const checkEnv = (requiredEnvVars: TSFSRequiredEnvVars | undefined, validEnvValues: TSFSValidEnvValues | undefined): void => {
+export const checkEnv = (
+    requiredEnvVars: TSFSRequiredEnvVars | undefined,
+    validEnvValues: TSFSValidEnvValues | undefined
+): void => {
     if (!requiredEnvVars || !validEnvValues) {
         throw new Error('Required environment vars & valid environment values have to be configured.');
     }

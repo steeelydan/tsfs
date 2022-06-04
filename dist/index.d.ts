@@ -2,6 +2,7 @@
 /// <reference types="passport" />
 /// <reference types="qs" />
 /// <reference types="node" />
+/// <reference types="node" />
 export * from './types.js';
 export declare const authentication: {
     /**
@@ -87,7 +88,7 @@ export declare const database: {
      *
      * @returns Sequelize instance
      */
-    create: (dbConfig: import("./types.js").TSFSDbConfig) => Promise<import("sequelize/types").Sequelize>;
+    create: (dbConfig: import("./types.js").TSFSDbConfig) => Promise<import("sequelize/types/sequelize.js").Sequelize>;
 };
 export declare const environment: {
     /**
@@ -157,7 +158,7 @@ export declare const session: {
      *
      * @returns {sessionMiddleware: RequestHandler}
      */
-    setup: (app: import("express").Express, sequelize: import("sequelize/types").Sequelize, sessionMaxAge: number) => {
+    setup: (app: import("express").Express, sequelize: import("sequelize/types/sequelize.js").Sequelize, sessionMaxAge: number) => {
         sessionMiddleware: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
     };
 };
