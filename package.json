@@ -6,7 +6,7 @@
         "type": "git",
         "url": "git@github.com:steeelydan/tsfs.git"
     },
-    "version": "0.0.17",
+    "version": "0.0.18",
     "license": "GPL-3.0-only",
     "type": "module",
     "engines": {
@@ -28,9 +28,9 @@
     },
     "peerDependencies": {
         "@types/passport-local": "1.0.34",
-        "express": "4.17.3",
-        "sequelize": "6.19.0",
-        "sqlite3": "5.0.2"
+        "express": "4.18.1",
+        "sequelize": "6.20.1",
+        "sqlite3": "5.0.8"
     },
     "dependencies": {
         "bcryptjs": "2.4.3",
