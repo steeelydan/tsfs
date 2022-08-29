@@ -40,7 +40,7 @@ Install from npm: `npm install @steeelydan/tsfs`
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { HttpServer } from '@steeelydan/tsfs';
+import { Base } from '@steeelydan/tsfs';
 
 dotenv.config(); // TODO Use TSFS implementation
 
@@ -53,7 +53,7 @@ const runApp = async () => {
         res.send('Hey Client');
     });
 
-    const server = HttpServer.create(app);
+    const server = Base.HttpServer.create(app);
 
     server.listen(process.env.PORT, () => {
         console.log(`Listening on Port ${process.env.PORT}`);

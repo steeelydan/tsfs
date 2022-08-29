@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { Checks } from '../../index.js';
+import { Base } from '../../index.js';
 import { TSFSPathConfig, TSFSRequiredEnvVars, TSFSValidEnvValues } from '../../types';
 
 export const setup = (
@@ -13,14 +13,14 @@ export const setup = (
     dotenv.config({ path: tsfsPathConfig.envPath });
 
     if (checkConfigFiles) {
-        Checks.checkConfigFiles(tsfsPathConfig);
+        Base.Checks.checkConfigFiles(tsfsPathConfig);
     }
 
     if (checkEnv) {
-        Checks.checkEnv(requiredEnvVars, validEnvValues);
+        Base.Checks.checkEnv(requiredEnvVars, validEnvValues);
     }
 
     if (checkPublicDir) {
-        Checks.checkPublicDir(tsfsPathConfig);
+        Base.Checks.checkPublicDir(tsfsPathConfig);
     }
 };
