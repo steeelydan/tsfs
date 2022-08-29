@@ -1,6 +1,6 @@
 import path from 'path';
 import express, { Express } from 'express';
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize/types';
 import supertest from 'supertest';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';

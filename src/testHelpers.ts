@@ -1,5 +1,5 @@
+import { Sequelize } from 'sequelize/types';
 import { database } from '.';
-import { Sequelize } from 'sequelize';
 import { TSFSDbConfig } from './types.js';
 
 export const getTestDatabase = async (dbConfig: TSFSDbConfig): Promise<Sequelize> => {

@@ -1,5 +1,6 @@
-import { Model, ModelAttributes, Sequelize } from 'sequelize';
+import { Model, ModelAttributes } from 'sequelize';
 import { TSFSCreationAttributes, TSFSUserRole } from './types';
+import { Sequelize } from 'sequelize/types';
 export interface ICoreTestUser {
     id: string;
     username: string;

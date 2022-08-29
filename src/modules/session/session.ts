@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize/types';
 import { Express, RequestHandler } from 'express';
 import expressSession from 'express-session';
 import connectSessionSequelize from 'connect-session-sequelize';

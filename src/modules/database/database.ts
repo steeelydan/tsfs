@@ -1,5 +1,6 @@
-import { Sequelize, Options } from 'sequelize';
+import { Options } from 'sequelize';
 import { TSFSDbConfig } from '../../types';
+import { Sequelize } from 'sequelize';
 
 export const create = async (dbConfig: TSFSDbConfig): Promise<Sequelize> => {
     if (
