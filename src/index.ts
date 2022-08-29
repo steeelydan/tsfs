@@ -185,7 +185,7 @@ export const Performance = {
     useCompression
 };
 
-export const TSFS = {
+export default {
     Base,
     Database,
     Environment,

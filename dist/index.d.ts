@@ -176,7 +176,7 @@ export declare const Performance: {
      */
     useCompression: (app: import("express").Express) => void;
 };
-export declare const TSFS: {
+declare const _default: {
     Base: {
         Checks: {
             /**
@@ -344,3 +344,4 @@ export declare const TSFS: {
         };
     };
 };
+export default _default;
