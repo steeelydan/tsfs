@@ -17,7 +17,7 @@ import { setup as setupRequestParsers } from './modules/requestParsers/requestPa
 import { setup as setupSession } from './modules/session/session.js';
 import { setup as setupViewEngine } from './modules/viewEngine/viewEngine.js';
 export * from './types.js';
-export const authentication = {
+export const Authentication = {
     /**
      * Sets up Passport.js authentication.
      *
@@ -53,7 +53,7 @@ export const authentication = {
      */
     mustBeAdmin
 };
-export const checks = {
+export const Checks = {
     /**
      * Verifies existence of required config files
      */
@@ -72,10 +72,10 @@ export const checks = {
      */
     checkPublicDir
 };
-export const cookies = {
+export const Cookies = {
     setup: setupCookies
 };
-export const csrfProtection = {
+export const CsrfProtection = {
     /**
      * Sets up CSRF protection via the double submit cookie pattern
      * (https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#double-submit-cookie)
@@ -86,7 +86,7 @@ export const csrfProtection = {
      */
     setup: setupCsrfProtection
 };
-export const database = {
+export const Database = {
     /**
      * Sets up a database instance according to model definitions.
      *
@@ -94,16 +94,19 @@ export const database = {
      */
     create: createDatabase
 };
-export const environment = {
+export const Environment = {
     /**
      * Reads the .env file and prepares process.env, checks if all environment variables are set & checks if public dir exists
      */
     setup: setupEnvironment
 };
-export const headers = {
+export const Headers = {
     setup: setupHeaders
 };
-export const httpServer = {
+/**
+ * TSFS's implementation of a Node server.
+ */
+export const HttpServer = {
     /**
      * Create the application server.
      *
@@ -116,14 +119,14 @@ export const httpServer = {
      */
     create: createHttpServer
 };
-export const i18n = {
+export const I18n = {
     setup: setupI18n
 };
-export const loggers = {
+export const Loggers = {
     createGeneralLogger,
     setupRequestLogger
 };
-export const performance = {
+export const Performance = {
     /**
      * Compression for lower response sizes
      *
@@ -133,10 +136,10 @@ export const performance = {
      */
     useCompression
 };
-export const publicFiles = {
+export const PublicFiles = {
     serve: servePublicFiles
 };
-export const rateLimiting = {
+export const RateLimiting = {
     /**
      * Creates a rate limiting middleware with the specified allowed hits per minute.
      *
@@ -144,7 +147,7 @@ export const rateLimiting = {
      */
     createRateLimiter: createRateLimiter
 };
-export const requestParsers = {
+export const RequestParsers = {
     /**
      * Enables query string (req.query) & json body (req.body) parsing
      *
@@ -152,7 +155,7 @@ export const requestParsers = {
      */
     setup: setupRequestParsers
 };
-export const session = {
+export const Session = {
     /**
      * Sets up sessions
      *
@@ -164,6 +167,24 @@ export const session = {
      */
     setup: setupSession
 };
-export const viewEngine = {
+export const ViewEngine = {
     setup: setupViewEngine
+};
+export const TSFS = {
+    Authentication,
+    Checks,
+    Cookies,
+    CsrfProtection,
+    Database,
+    Environment,
+    Headers,
+    HttpServer,
+    I18n,
+    Loggers,
+    Performance,
+    PublicFiles,
+    RateLimiting,
+    RequestParsers,
+    Session,
+    ViewEngine
 };

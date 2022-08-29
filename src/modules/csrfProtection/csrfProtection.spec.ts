@@ -1,10 +1,10 @@
 import path from 'path';
 import supertest from 'supertest';
 import express, { Request, Response } from 'express';
-import { cookies } from '../..';
-import { csrfProtection } from '../..';
-import { requestParsers } from '../..';
-import { session } from '../..';
+import { Cookies } from '../..';
+import { CsrfProtection } from '../..';
+import { RequestParsers } from '../..';
+import { Session } from '../..';
 import { getTestDatabase } from '../../testHelpers.js';
 import { TSFSDbConfig } from '../../types';
 
@@ -21,9 +21,9 @@ describe('CsrfProtection', () => {
         process.env.SESSION_SECRET = '1234';
         const sequelize = await getTestDatabase(dbConfig);
         const app = express();
-        requestParsers.setup(app);
-        cookies.setup(app);
-        session.setup(app, sequelize, 300);
+        RequestParsers.setup(app);
+        Cookies.setup(app);
+        Session.setup(app, sequelize, 300);
 
         let csrf;
         let requestSession;
@@ -43,10 +43,10 @@ describe('CsrfProtection', () => {
         process.env.SESSION_SECRET = '1234';
         const sequelize = await getTestDatabase(dbConfig);
         const app = express();
-        requestParsers.setup(app);
-        cookies.setup(app);
-        session.setup(app, sequelize, 300);
-        csrfProtection.setup(app);
+        RequestParsers.setup(app);
+        Cookies.setup(app);
+        Session.setup(app, sequelize, 300);
+        CsrfProtection.setup(app);
 
         let csrf;
         let requestSession;

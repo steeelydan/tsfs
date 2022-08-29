@@ -4,10 +4,10 @@ import { Sequelize } from 'sequelize/types';
 import supertest from 'supertest';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
-import { session } from '../..';
-import { cookies } from '../..';
-import { authentication } from '../..';
-import { requestParsers } from '../../';
+import { Session } from '../..';
+import { Cookies } from '../..';
+import { Authentication } from '../..';
+import { RequestParsers } from '../../';
 import { getTestDatabase } from '../../testHelpers.js';
 import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
 import { TSFSDbConfig, TSFSRequestUser, TSFSUserRole } from '../../types';
@@ -17,10 +17,10 @@ let sequelize: Sequelize, models: CoreTestModels;
 
 const getTestExpressApp = (models: CoreTestModels): Express => {
     const app = express();
-    requestParsers.setup(app);
-    cookies.setup(app);
-    session.setup(app, sequelize, 3000);
-    authentication.setup(app, models.CoreTestUser);
+    RequestParsers.setup(app);
+    Cookies.setup(app);
+    Session.setup(app, sequelize, 3000);
+    Authentication.setup(app, models.CoreTestUser);
 
     return app;
 };

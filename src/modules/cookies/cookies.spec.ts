@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import supertest from 'supertest';
-import { cookies } from '../..';
+import { Cookies } from '../..';
 
 describe('Cookies', () => {
     it('Does not have cookies without middleware', async () => {
@@ -20,7 +20,7 @@ describe('Cookies', () => {
 
     it('Has cookies with middleware', async () => {
         const app = express();
-        cookies.setup(app);
+        Cookies.setup(app);
 
         let reqCookies;
 

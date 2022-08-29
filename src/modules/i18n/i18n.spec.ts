@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import express, { Request, Response } from 'express';
-import { i18n } from '../..';
+import { I18n } from '../../index.js';
 
 beforeAll(() => {
     process.env.NODE_ENV = 'test';
@@ -26,7 +26,7 @@ describe('i18n: Setup', () => {
     it('has i18n attached after init', async () => {
         const app = express();
 
-        await i18n.setup(app, {
+        await I18n.setup(app, {
             en: {
                 translation: {
                     common: {

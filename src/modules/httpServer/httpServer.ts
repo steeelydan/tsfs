@@ -17,8 +17,12 @@ export const create = (app: Express, devSslKey?: string, devSslCert?: string): h
             },
             app
         );
+
+        console.info('Started a development HTTPS web server with fake TLS keys');
     } else {
         server = http.createServer(app);
+
+        console.info('Started a production HTTP web server');
     }
 
     return server;

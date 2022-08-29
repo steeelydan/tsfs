@@ -2,7 +2,7 @@ import path from 'path';
 import { Sequelize } from 'sequelize/types';
 import { getTestDatabase } from '../../testHelpers.js';
 import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
-import { database } from '../..';
+import { Database } from '../..';
 import { TSFSDbConfig } from '../../types.js';
 
 let sequelize: Sequelize;
@@ -20,7 +20,7 @@ describe('setup database', () => {
     it('throws if no process.env.NODE_ENV specified', async () => {
         process.env.NODE_ENV = undefined;
         try {
-            await database.create(dbConfig);
+            await Database.create(dbConfig);
             fail();
         } catch (e) {}
     });

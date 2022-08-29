@@ -10,9 +10,11 @@ export const create = (app, devSslKey, devSslCert) => {
             key: devSslKey,
             cert: devSslCert
         }, app);
+        console.info('Started a development HTTPS web server with fake TLS keys');
     }
     else {
         server = http.createServer(app);
+        console.info('Started a production HTTP web server');
     }
     return server;
 };
