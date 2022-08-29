@@ -8,23 +8,23 @@ TSFS (roughly **TypeScript Full Stack framework**) is a 'mid-level' framework fo
 
 It provides you with
 
-- A selection of libraries for everyday serverside tasks (Express as the microframework, the usual middleware for common tasks)
-- Opinionated, drop-in solutions for basic decisions (database, authentication, templating, security, logging...)
-- A clean, functional-ish starting point for custom architectures
-- A more complete view at classic web application development than the usual tutorials for that ecosystem provide
-- An application framework where you feel free and able but also enjoy guidance and security
-- A solid base for serverside rendered UI as well as API driven SPAs
+-   A selection of libraries for everyday serverside tasks (Express as the microframework, the usual middleware for common tasks)
+-   Opinionated, drop-in solutions for basic decisions (database, authentication, templating, security, logging...)
+-   A clean, functional-ish starting point for custom architectures
+-   A more complete view at classic web application development than the usual tutorials for that ecosystem provide
+-   An application framework where you feel free and able but also enjoy guidance and security
+-   A solid base for serverside rendered UI as well as API driven SPAs
 
 Its intended use is in classical web applications, where users might register, get authenticated, save and query data. A monolith whose backend deals with a single database, deployed as-is on a VPS. It's also a take on stability and established web development principles in the fast paced JS/TS universe. While I'm in no way opposed to contemporary architecture, I'm confident that there are benefits of such a tried-and-tested setup in certain situations. TSFS combines 'cutting edge' decisions (all-in on TypeScript, full commitment to Node ES Modules) with those conservative choices.
 
 Influences:
 
-- 'Old-fashioned' full stack frameworks from other ecosystems (Rails, Django, Spring, Symfony)
-- Gary Bernhardt's musings on full stack TypeScript
-    - https://www.executeprogram.com/blog/porting-to-typescript-solved-our-api-woes
-    - https://fullstackradio.com/144
-- Hacker News discussions of monolith-first architecture
-- The 'boring stack' discussed in places like hacker news
+-   'Old-fashioned' full stack frameworks from other ecosystems (Rails, Django, Spring, Symfony)
+-   Gary Bernhardt's musings on full stack TypeScript
+    -   https://www.executeprogram.com/blog/porting-to-typescript-solved-our-api-woes
+    -   https://fullstackradio.com/144
+-   Hacker News discussions of monolith-first architecture
+-   The 'boring stack' discussed in places like hacker news
 
 Further description coming soon. Meanwhile, you can see it in action here: https://github.com/steeelydan/sync-party
 
@@ -36,4 +36,34 @@ Install from npm: `npm install @steeelydan/tsfs`
 
 ### Example
 
-[Todo]
+```typescript
+import fs from 'fs';
+import path from 'path';
+import express from 'express';
+import dotenv from 'dotenv';
+
+import { HttpServer } from '@steeelydan/tsfs';
+
+dotenv.config(); // TODO use TSFS implementation
+
+const devTlsKey = fs.readFileSync(path.resolve('tls-dev/server.key'), 'utf-8');
+const devTlsCert = fs.readFileSync(path.resolve('tls-dev/server.cert'), 'utf-8');
+
+const runApp = async () => {
+    const app = express();
+
+    app.get('/', (req, res) => {
+        console.log('Hey Server');
+
+        res.send('Hey Client');
+    });
+
+    const server = HttpServer.create(app, devTlsKey, devTlsCert);
+
+    server.listen(process.env.PORT, () => {
+        console.log(`Listening on Port ${process.env.PORT}`);
+    });
+};
+
+runApp().catch((error) => console.error(error));
+```
