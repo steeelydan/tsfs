@@ -37,17 +37,12 @@ Install from npm: `npm install @steeelydan/tsfs`
 ### Example
 
 ```typescript
-import fs from 'fs';
-import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 
 import { HttpServer } from '@steeelydan/tsfs';
 
-dotenv.config(); // TODO use TSFS implementation
-
-const devTlsKey = fs.readFileSync(path.resolve('tls-dev/server.key'), 'utf-8');
-const devTlsCert = fs.readFileSync(path.resolve('tls-dev/server.cert'), 'utf-8');
+dotenv.config(); // TODO Use TSFS implementation
 
 const runApp = async () => {
     const app = express();
@@ -58,7 +53,7 @@ const runApp = async () => {
         res.send('Hey Client');
     });
 
-    const server = HttpServer.create(app, devTlsKey, devTlsCert);
+    const server = HttpServer.create(app);
 
     server.listen(process.env.PORT, () => {
         console.log(`Listening on Port ${process.env.PORT}`);
