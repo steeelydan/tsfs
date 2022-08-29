@@ -106,7 +106,7 @@ export declare const HttpServer: {
     /**
      * Create the application server.
      *
-     * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy before it)
+     * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy in front of it)
      *
      * @param app: Express application
      * @returns a Node HTTP(S) server
@@ -266,7 +266,7 @@ export declare const TSFS: {
         /**
          * Create the application server.
          *
-         * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy before it)
+         * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy in front of it)
          *
          * @param app: Express application
          * @returns a Node HTTP(S) server
