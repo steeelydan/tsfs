@@ -108,12 +108,10 @@ export declare const HttpServer: {
      *
      * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy before it)
      *
-     * HTTPS requires ssl dev cert & key in ssl-dev/
-     *
      * @param app: Express application
      * @returns a Node HTTP(S) server
      */
-    create: (app: import("express").Express, devSslKey?: string | undefined, devSslCert?: string | undefined) => import("http").Server | import("https").Server;
+    create: (app: import("express").Express) => import("http").Server | import("https").Server;
 };
 export declare const I18n: {
     setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;
@@ -270,12 +268,10 @@ export declare const TSFS: {
          *
          * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy before it)
          *
-         * HTTPS requires ssl dev cert & key in ssl-dev/
-         *
          * @param app: Express application
          * @returns a Node HTTP(S) server
          */
-        create: (app: import("express").Express, devSslKey?: string | undefined, devSslCert?: string | undefined) => import("http").Server | import("https").Server;
+        create: (app: import("express").Express) => import("http").Server | import("https").Server;
     };
     I18n: {
         setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;

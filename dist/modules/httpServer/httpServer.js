@@ -1,14 +1,12 @@
 import http from 'http';
 import https from 'https';
-export const create = (app, devSslKey, devSslCert) => {
+import { devTlsCert, devTlsKey } from '../../devTlsCert.js';
+export const create = (app) => {
     let server;
     if (process.env.NODE_ENV === 'development') {
-        if (!devSslKey || !devSslCert) {
-            throw new Error('Must specify ssl key & cert for dev server.');
-        }
         server = https.createServer({
-            key: devSslKey,
-            cert: devSslCert
+            key: devTlsKey,
+            cert: devTlsCert
         }, app);
         console.info('Started a development HTTPS web server with fake TLS keys');
     }

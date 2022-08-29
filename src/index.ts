@@ -121,8 +121,6 @@ export const HttpServer = {
      *
      * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy before it)
      *
-     * HTTPS requires ssl dev cert & key in ssl-dev/
-     *
      * @param app: Express application
      * @returns a Node HTTP(S) server
      */
