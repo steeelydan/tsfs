@@ -61,18 +61,20 @@ export class Config {
     /**
      * Reads the .env file and prepares process.env & checks if all environment variables are set
      */
-    static setupEnvironment = (envPathAbsolute: string): void => {
-        if (!isAbsolute(envPathAbsolute)) {
-            throw new Error('Environment path must be absolute. Current value: ' + envPathAbsolute);
+    static setupEnvironment = (dotEnvFilePath?: string): void => {
+        if (dotEnvFilePath) {
+            if (!isAbsolute(dotEnvFilePath)) {
+                throw new Error('Environment path must be absolute. Current value: ' + dotEnvFilePath);
+            }
+
+            const envFilePath = path.join(dotEnvFilePath, '.env');
+
+            if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
+                throw new Error('No .env file found under: ' + envFilePath);
+            }
+
+            dotenv.config({ path: envFilePath });
         }
-
-        const envFilePath = path.join(envPathAbsolute, '.env');
-
-        if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
-            throw new Error('No .env file found under: ' + envFilePath);
-        }
-
-        dotenv.config({ path: envFilePath });
 
         this.environment = validateAndCastEnvValues(process.env.NODE_ENV, process.env.PORT, process.env.SESSION_SECRET);
 

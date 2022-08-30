@@ -49,15 +49,17 @@ _a = Config;
 /**
  * Reads the .env file and prepares process.env & checks if all environment variables are set
  */
-Config.setupEnvironment = (envPathAbsolute) => {
-    if (!isAbsolute(envPathAbsolute)) {
-        throw new Error('Environment path must be absolute. Current value: ' + envPathAbsolute);
+Config.setupEnvironment = (dotEnvFilePath) => {
+    if (dotEnvFilePath) {
+        if (!isAbsolute(dotEnvFilePath)) {
+            throw new Error('Environment path must be absolute. Current value: ' + dotEnvFilePath);
+        }
+        const envFilePath = path.join(dotEnvFilePath, '.env');
+        if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
+            throw new Error('No .env file found under: ' + envFilePath);
+        }
+        dotenv.config({ path: envFilePath });
     }
-    const envFilePath = path.join(envPathAbsolute, '.env');
-    if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
-        throw new Error('No .env file found under: ' + envFilePath);
-    }
-    dotenv.config({ path: envFilePath });
     _a.environment = validateAndCastEnvValues(process.env.NODE_ENV, process.env.PORT, process.env.SESSION_SECRET);
     if (_a.environment) {
         console.info('TSFS initialized in environment: ' + _a.environment.NODE_ENV);

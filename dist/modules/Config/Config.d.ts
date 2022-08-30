@@ -7,6 +7,6 @@ export declare class Config {
     /**
      * Reads the .env file and prepares process.env & checks if all environment variables are set
      */
-    static setupEnvironment: (envPathAbsolute: string) => void;
+    static setupEnvironment: (dotEnvFilePath?: string) => void;
     static getEnvironment: () => Environment;
 }
