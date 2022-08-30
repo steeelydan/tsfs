@@ -73,7 +73,11 @@ export class Config {
                 throw new Error('No .env file found under: ' + envFilePath);
             }
 
+            console.log('Reading environment variables from .env file');
+
             dotenv.config({ path: envFilePath });
+        } else {
+            console.log('Reading environment variables from shell');
         }
 
         this.environment = validateAndCastEnvValues(process.env.NODE_ENV, process.env.PORT, process.env.SESSION_SECRET);

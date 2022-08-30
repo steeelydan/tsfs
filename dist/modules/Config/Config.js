@@ -58,7 +58,11 @@ Config.setupEnvironment = (dotEnvFilePath) => {
         if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
             throw new Error('No .env file found under: ' + envFilePath);
         }
+        console.log('Reading environment variables from .env file');
         dotenv.config({ path: envFilePath });
+    }
+    else {
+        console.log('Reading environment variables from shell');
     }
     _a.environment = validateAndCastEnvValues(process.env.NODE_ENV, process.env.PORT, process.env.SESSION_SECRET);
     if (_a.environment) {
