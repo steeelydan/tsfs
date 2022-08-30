@@ -1,14 +1,14 @@
 import dotenv from 'dotenv';
-import { Base } from '../../index.js';
+import { Config } from '../..';
 export const setup = (tsfsPathConfig, requiredEnvVars, validEnvValues, checkConfigFiles = true, checkEnv = true, checkPublicDir = true) => {
     dotenv.config({ path: tsfsPathConfig.envPath });
     if (checkConfigFiles) {
-        Base.Checks.checkConfigFiles(tsfsPathConfig);
+        Config.checkConfigFiles(tsfsPathConfig);
     }
     if (checkEnv) {
-        Base.Checks.checkEnv(requiredEnvVars, validEnvValues);
+        Config.checkEnv(requiredEnvVars, validEnvValues);
     }
     if (checkPublicDir) {
-        Base.Checks.checkPublicDir(tsfsPathConfig);
+        Config.checkPublicDir(tsfsPathConfig);
     }
 };

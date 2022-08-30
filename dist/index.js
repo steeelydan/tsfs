@@ -17,46 +17,35 @@ import { setup as setupRequestParsers } from './modules/requestParsers/requestPa
 import { setup as setupSession } from './modules/session/session.js';
 import { setup as setupTemplating } from './modules/viewEngine/viewEngine.js';
 export * from './types.js';
-/**
- * Checks, Cookies, HttpServer, I18n, Logging, PublicFiles, RequestParsers, Session, Templating
- */
-export const Base = {
-    Checks: {
-        /**
-         * Verifies existence of required config files
-         */
-        checkConfigFiles,
-        /**
-         * Checks if all required environment variables are set.
-         *
-         * @param requiredEnvVars List of required environment variables
-         * @param validEnvValues Valid values for env variables. Can be an array of values or a function returning true if value is valid.
-         */
-        checkEnv,
-        /**
-         * Checks existence of public dir in build folder.
-         *
-         * If not exists, probably client has not been built yet.
-         */
-        checkPublicDir
-    },
-    Cookies: {
-        setup: setupCookies
-    },
+export const Config = {
     /**
-     * TSFS's implementation of a Node server.
+     * Verifies existence of required config files
      */
-    HttpServer: {
+    checkConfigFiles,
+    /**
+     * Checks if all required environment variables are set.
+     *
+     * @param requiredEnvVars List of required environment variables
+     * @param validEnvValues Valid values for env variables. Can be an array of values or a function returning true if value is valid.
+     */
+    checkEnv,
+    /**
+     * Checks existence of public dir in build folder.
+     *
+     * If not exists, probably client has not been built yet.
+     */
+    checkPublicDir,
+    Environment: {
         /**
-         * Create the application server.
-         *
-         * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy in front of it)
-         *
-         * @param app: Express application
-         * @returns a Node HTTP(S) server
+         * Reads the .env file and prepares process.env, checks if all environment variables are set & checks if public dir exists
          */
-        create: createHttpServer
-    },
+        setup: setupEnvironment
+    }
+};
+/**
+ * I18n, Logging, PublicFiles, Session, Templating
+ */
+export const WebApp = {
     I18n: {
         setup: setupI18n
     },
@@ -66,14 +55,6 @@ export const Base = {
     },
     PublicFiles: {
         serve: servePublicFiles
-    },
-    RequestParsers: {
-        /**
-         * Enables query string (req.query) & json body (req.body) parsing
-         *
-         * @param app Express application
-         */
-        setup: setupRequestParsers
     },
     Session: {
         /**
@@ -89,6 +70,31 @@ export const Base = {
     },
     Templating: {
         setup: setupTemplating
+    }
+};
+/**
+ * TSFS's implementation of a Node server.
+ */
+export const HttpServer = {
+    Cookies: {
+        setup: setupCookies
+    },
+    /**
+     * Create the application server.
+     *
+     * Fake HTTPS in dev; HTTP in prod (where you'll certainly use a proxy in front of it)
+     *
+     * @param app: Express application
+     * @returns a Node HTTP(S) server
+     */
+    create: createHttpServer,
+    RequestParsers: {
+        /**
+         * Enables query string (req.query) & json body (req.body) parsing
+         *
+         * @param app Express application
+         */
+        setup: setupRequestParsers
     }
 };
 /**
@@ -162,12 +168,6 @@ export const Database = {
      */
     create: createDatabase
 };
-export const Environment = {
-    /**
-     * Reads the .env file and prepares process.env, checks if all environment variables are set & checks if public dir exists
-     */
-    setup: setupEnvironment
-};
 export const Performance = {
     /**
      * Compression for lower response sizes
@@ -179,9 +179,10 @@ export const Performance = {
     useCompression
 };
 export default {
-    Base,
+    Config,
     Database,
-    Environment,
+    HttpServer,
     Performance,
-    Security
+    Security,
+    WebApp
 };
