@@ -38,13 +38,13 @@ Install from npm: `npm install @steeelydan/tsfs`
 
 ```typescript
 import express from 'express';
-import dotenv from 'dotenv';
-import { HttpServer } from '@steeelydan/tsfs';
-
-dotenv.config(); // TODO Use TSFS implementation
+import { Config, HttpServer } from '@steeelydan/tsfs';
+import path from 'path';
 
 const runApp = async () => {
     const app = express();
+
+    Config.setupEnvironment(path.resolve());
 
     app.get('/', (req, res) => {
         console.log('Hey Server');
@@ -54,8 +54,8 @@ const runApp = async () => {
 
     const server = HttpServer.create(app);
 
-    server.listen(process.env.PORT, () => {
-        console.log(`Listening on Port ${process.env.PORT}`);
+    server.listen(Config.getEnvironment().PORT, () => {
+        console.log(`Listening on Port ${Config.getEnvironment().PORT}`);
     });
 };
 

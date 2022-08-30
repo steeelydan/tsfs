@@ -1,5 +1,13 @@
 import { Logger } from 'winston';
 
+export type ValidNodeEnvs = 'development' | 'production' | 'test';
+
+export type Environment = {
+    NODE_ENV: ValidNodeEnvs;
+    SESSION_SECRET: null | string;
+    PORT: number;
+};
+
 export type TSFSCreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type TSFSUserRole = 'admin' | 'user';

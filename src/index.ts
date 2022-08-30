@@ -1,10 +1,8 @@
 import { setup as setupAuthentication } from './modules/authentication/setup.js';
 import { authenticateLocal, mustBeAdmin, mustBeAuthenticated } from './modules/authentication/middleware.js';
-import { checkConfigFiles, checkPublicDir, checkEnv } from './modules/checks/checks.js';
 import { setup as setupCookies } from './modules/cookies/cookies.js';
 import { setup as setupCsrfProtection } from './modules/csrfProtection/csrfProtection.js';
 import { create as createDatabase } from './modules/database/database.js';
-import { setup as setupEnvironment } from './modules/environment/environment.js';
 import { setup as setupHeaders } from './modules/headers/headers.js';
 import { create as createHttpServer } from './modules/httpServer/httpServer.js';
 import { setup as setupI18n } from './modules/i18n/i18n.js';
@@ -19,31 +17,7 @@ import { setup as setupTemplating } from './modules/viewEngine/viewEngine.js';
 
 export * from './types.js';
 
-export const Config = {
-    /**
-     * Verifies existence of required config files
-     */
-    checkConfigFiles,
-    /**
-     * Checks if all required environment variables are set.
-     *
-     * @param requiredEnvVars List of required environment variables
-     * @param validEnvValues Valid values for env variables. Can be an array of values or a function returning true if value is valid.
-     */
-    checkEnv,
-    /**
-     * Checks existence of public dir in build folder.
-     *
-     * If not exists, probably client has not been built yet.
-     */
-    checkPublicDir,
-    Environment: {
-        /**
-         * Reads the .env file and prepares process.env, checks if all environment variables are set & checks if public dir exists
-         */
-        setup: setupEnvironment
-    }
-};
+export * from './modules/Config/Config.js';
 
 /**
  * I18n, Logging, PublicFiles, Session, Templating
@@ -184,13 +158,4 @@ export const Performance = {
      * @param app Express Application
      */
     useCompression
-};
-
-export default {
-    Config,
-    Database,
-    HttpServer,
-    Performance,
-    Security,
-    WebApp
 };
