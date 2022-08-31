@@ -4,23 +4,20 @@ import { Sequelize } from 'sequelize/types';
 import supertest from 'supertest';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
-import { Session } from '../..';
-import { Cookies } from '../..';
-import { Authentication } from '../..';
-import { RequestParsers } from '../../';
 import { getTestDatabase } from '../../testHelpers.js';
 import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
 import { TSFSDbConfig, TSFSRequestUser, TSFSUserRole } from '../../types';
-import { mustBeAdmin, mustBeAuthenticated } from './middleware';
+import { mustBeAdmin, mustBeAuthenticated } from './authMiddleware';
+import { HttpServer, Security, WebApp } from '../../index.js';
 
 let sequelize: Sequelize, models: CoreTestModels;
 
 const getTestExpressApp = (models: CoreTestModels): Express => {
     const app = express();
-    RequestParsers.setup(app);
-    Cookies.setup(app);
-    Session.setup(app, sequelize, 3000);
-    Authentication.setup(app, models.CoreTestUser);
+    HttpServer.RequestParsers.setup(app);
+    HttpServer.Cookies.setup(app);
+    WebApp.Session.setup(app, sequelize, 3000);
+    Security.Authentication.setup(app, models.CoreTestUser);
 
     return app;
 };

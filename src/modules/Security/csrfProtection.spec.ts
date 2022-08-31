@@ -1,12 +1,9 @@
 import path from 'path';
 import supertest from 'supertest';
 import express, { Request, Response } from 'express';
-import { Cookies } from '../..';
-import { CsrfProtection } from '../..';
-import { RequestParsers } from '../..';
-import { Session } from '../..';
 import { getTestDatabase } from '../../testHelpers.js';
 import { TSFSDbConfig } from '../../types';
+import { HttpServer, Security, WebApp } from '../../index.js';
 
 export const dbConfig: TSFSDbConfig = {
     test: {
@@ -21,9 +18,9 @@ describe('CsrfProtection', () => {
         process.env.SESSION_SECRET = '1234';
         const sequelize = await getTestDatabase(dbConfig);
         const app = express();
-        RequestParsers.setup(app);
-        Cookies.setup(app);
-        Session.setup(app, sequelize, 300);
+        HttpServer.RequestParsers.setup(app);
+        HttpServer.Cookies.setup(app);
+        WebApp.Session.setup(app, sequelize, 300);
 
         let csrf;
         let requestSession;
@@ -43,10 +40,10 @@ describe('CsrfProtection', () => {
         process.env.SESSION_SECRET = '1234';
         const sequelize = await getTestDatabase(dbConfig);
         const app = express();
-        RequestParsers.setup(app);
-        Cookies.setup(app);
-        Session.setup(app, sequelize, 300);
-        CsrfProtection.setup(app);
+        HttpServer.RequestParsers.setup(app);
+        HttpServer.Cookies.setup(app);
+        WebApp.Session.setup(app, sequelize, 300);
+        Security.CsrfProtection.setup(app);
 
         let csrf;
         let requestSession;

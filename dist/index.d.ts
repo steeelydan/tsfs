@@ -12,10 +12,6 @@ export declare const WebApp: {
     I18n: {
         setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;
     };
-    Logging: {
-        createGeneralLogger: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => import("winston").Logger;
-        setupRequestLogger: (generalLogger: import("winston").Logger, app: import("express").Express) => void;
-    };
     PublicFiles: {
         serve: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
     };
@@ -61,6 +57,10 @@ export declare const HttpServer: {
          */
         setup: (app: import("express").Express) => void;
     };
+};
+export declare const Logger: {
+    createGeneralLogger: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => import("winston").Logger;
+    setupRequestLogger: (generalLogger: import("winston").Logger, app: import("express").Express) => void;
 };
 /**
  * Authentication, CSRF Protection, rate limiting, headers

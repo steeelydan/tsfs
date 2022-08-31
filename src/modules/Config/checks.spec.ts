@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { Checks } from '../..';
 import { TestGlobal } from '../../testTypes';
 import { TSFSValidEnvValues } from '../../types';
+import { checkEnv, checkPublicDir } from './checks';
 
 const testEnvVars = ['NODE_ENV', 'PORT', 'SESSION_SECRET'];
 const coreTestPathConfig = (global as unknown as TestGlobal).testPathConfig;
@@ -19,7 +19,7 @@ describe('checkEnv()', () => {
             NODE_ENV: 'development'
         };
 
-        expect(() => Checks.checkEnv(testEnvVars, testValidEnvValues)).toThrowError('Env var not set: PORT');
+        expect(() => checkEnv(testEnvVars, testValidEnvValues)).toThrowError('Env var not set: PORT');
     });
 
     it('throws if validEnvVar is not in .env', () => {
@@ -29,7 +29,7 @@ describe('checkEnv()', () => {
             SESSION_SECRET: 'abc'
         };
 
-        expect(() => Checks.checkEnv(testEnvVars, { ...testValidEnvValues, FOO: ['bar'] })).toThrowError(
+        expect(() => checkEnv(testEnvVars, { ...testValidEnvValues, FOO: ['bar'] })).toThrowError(
             'Variable from validEnvValues does not exist in your .env'
         );
     });
@@ -41,7 +41,7 @@ describe('checkEnv()', () => {
             SESSION_SECRET: 'abc'
         };
 
-        expect(() => Checks.checkEnv(testEnvVars, testValidEnvValues)).toThrowError('Env var has wrong value: PORT.');
+        expect(() => checkEnv(testEnvVars, testValidEnvValues)).toThrowError('Env var has wrong value: PORT.');
     });
 
     it('throws when env vars have wrong type', () => {
@@ -51,7 +51,7 @@ describe('checkEnv()', () => {
             SESSION_SECRET: 'abc'
         };
 
-        expect(() => Checks.checkEnv(testEnvVars, testValidEnvValues)).toThrowError(
+        expect(() => checkEnv(testEnvVars, testValidEnvValues)).toThrowError(
             'Env var has wrong value: NODE_ENV; must be on of: development, production, test'
         );
     });
@@ -63,14 +63,14 @@ describe('checkEnv()', () => {
             SESSION_SECRET: 'abc'
         };
 
-        expect(() => Checks.checkEnv(testEnvVars, testValidEnvValues)).not.toThrowError();
+        expect(() => checkEnv(testEnvVars, testValidEnvValues)).not.toThrowError();
     });
 
     it('throws if public dir does not exist', () => {
         if (coreTestPathConfig.publicDirPath && fs.existsSync(coreTestPathConfig.publicDirPath)) {
-            expect(() => Checks.checkPublicDir(coreTestPathConfig)).not.toThrowError();
+            expect(() => checkPublicDir(coreTestPathConfig)).not.toThrowError();
         } else {
-            expect(() => Checks.checkPublicDir(coreTestPathConfig)).toThrowError();
+            expect(() => checkPublicDir(coreTestPathConfig)).toThrowError();
         }
     });
 });

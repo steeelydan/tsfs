@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import supertest from 'supertest';
-import { Headers } from '../..';
+import { Security } from '../..';
 
 beforeAll(() => {
     process.env.NODE_ENV = 'test';
@@ -33,7 +33,7 @@ describe('Setup Headers', () => {
 
     it('Has more secure headers after setup', async () => {
         const app = express();
-        Headers.setup(app);
+        Security.Headers.setup(app);
 
         app.get('/', (req: Request, res: Response) => {
             return res.send('Hello headers');
@@ -84,7 +84,7 @@ describe('Setup Headers', () => {
 
     it('configures headers based on options if provided', async () => {
         const app = express();
-        Headers.setup(app, {
+        Security.Headers.setup(app, {
             contentSecurityPolicy: {
                 directives: {
                     'default-src': 'self',

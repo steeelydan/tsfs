@@ -1,19 +1,19 @@
-import { setup as setupAuthentication } from './modules/authentication/setup.js';
-import { authenticateLocal, mustBeAdmin, mustBeAuthenticated } from './modules/authentication/middleware.js';
-import { setup as setupCookies } from './modules/cookies/cookies.js';
-import { setup as setupCsrfProtection } from './modules/csrfProtection/csrfProtection.js';
-import { create as createDatabase } from './modules/database/database.js';
-import { setup as setupHeaders } from './modules/headers/headers.js';
-import { create as createHttpServer } from './modules/httpServer/httpServer.js';
-import { setup as setupI18n } from './modules/i18n/i18n.js';
-import { create as createGeneralLogger } from './modules/logger/generalLogger.js';
-import { setup as setupRequestLogger } from './modules/logger/requestLogger.js';
-import { useCompression } from './modules/performance/performance.js';
-import { serve as servePublicFiles } from './modules/publicFiles/publicFiles.js';
-import { createRateLimiter } from './modules/rateLimiting/rateLimiting.js';
-import { setup as setupRequestParsers } from './modules/requestParsers/requestParsers.js';
-import { setup as setupSession } from './modules/session/session.js';
-import { setup as setupTemplating } from './modules/viewEngine/viewEngine.js';
+import { setup as setupAuthentication } from './modules/Security/authentication.js';
+import { authenticateLocal, mustBeAdmin, mustBeAuthenticated } from './modules/Security/authMiddleware.js';
+import { setup as setupCookies } from './modules/HttpServer/cookies.js';
+import { setup as setupCsrfProtection } from './modules/Security/csrfProtection.js';
+import { create as createDatabase } from './modules/Database/database.js';
+import { setup as setupHeaders } from './modules/Security/headers.js';
+import { create as createHttpServer } from './modules/HttpServer/create.js';
+import { setup as setupI18n } from './modules/WebApp/i18n.js';
+import { create as createGeneralLogger } from './modules/Logger/generalLogger.js';
+import { setup as setupRequestLogger } from './modules/Logger/requestLogger.js';
+import { useCompression } from './modules/Performance/performance.js';
+import { serve as servePublicFiles } from './modules/WebApp/publicFiles.js';
+import { createRateLimiter } from './modules/Security/rateLimiting.js';
+import { setup as setupRequestParsers } from './modules/HttpServer/requestParsers.js';
+import { setup as setupSession } from './modules/WebApp/session.js';
+import { setup as setupTemplating } from './modules/WebApp/viewEngine.js';
 export * from './types.js';
 export * from './modules/Config/Config.js';
 /**
@@ -22,10 +22,6 @@ export * from './modules/Config/Config.js';
 export const WebApp = {
     I18n: {
         setup: setupI18n
-    },
-    Logging: {
-        createGeneralLogger,
-        setupRequestLogger
     },
     PublicFiles: {
         serve: servePublicFiles
@@ -70,6 +66,10 @@ export const HttpServer = {
          */
         setup: setupRequestParsers
     }
+};
+export const Logger = {
+    createGeneralLogger,
+    setupRequestLogger
 };
 /**
  * Authentication, CSRF Protection, rate limiting, headers
@@ -122,6 +122,7 @@ export const Security = {
          */
         setup: setupCsrfProtection
     },
+    // FIXME focus on security headers (helmet) only?
     Headers: {
         setup: setupHeaders
     },
