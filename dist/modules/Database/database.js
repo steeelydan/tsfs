@@ -6,7 +6,11 @@ export const create = async (dbConfig) => {
             process.env.NODE_ENV !== 'test')) {
         throw new Error('Database init: No NODE_ENV specified.');
     }
-    const sequelize = new Sequelize(dbConfig[process.env.NODE_ENV]);
+    const config = dbConfig[process.env.NODE_ENV];
+    if (!config) {
+        throw new Error('Database init: No configuration for NODE_ENV ' + process.env.NODE_ENV);
+    }
+    const sequelize = new Sequelize(config);
     console.log('Database initialized, env: ' + process.env.NODE_ENV);
     return sequelize;
 };

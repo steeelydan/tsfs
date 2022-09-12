@@ -1,3 +1,4 @@
+import { Options } from 'sequelize/types';
 import { Logger } from 'winston';
 
 export type ValidNodeEnvs = 'development' | 'production' | 'test';
@@ -30,14 +31,12 @@ export type TSFSRequiredEnvVars = string[];
 
 export type TSFSValidEnvValues = Record<string, string[] | ((...args: string[]) => boolean)>;
 
-export type TSFSDbOptions = {
-    logging: boolean;
-    storage: string;
-    dialect: 'sqlite';
-};
+interface TSFSSequelizeOptions extends Options {
+    dialect: 'sqlite' | 'postgres';
+}
 
 export type TSFSDbConfig = {
-    development?: TSFSDbOptions;
-    test?: TSFSDbOptions;
-    production?: TSFSDbOptions;
+    development?: TSFSSequelizeOptions;
+    test?: TSFSSequelizeOptions;
+    production?: TSFSSequelizeOptions;
 };
