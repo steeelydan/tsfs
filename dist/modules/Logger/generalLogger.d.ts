@@ -1,2 +1,2 @@
-import { TSFSLogger, TSFSPathConfig } from '../../types';
-export declare const create: (tsfsPathConfig: TSFSPathConfig) => TSFSLogger;
+import { TSFSLogger } from '../../types';
+export declare const create: (logfileDirPath: string) => TSFSLogger;

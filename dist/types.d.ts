@@ -19,13 +19,6 @@ declare global {
     }
 }
 export declare type TSFSLogger = Logger;
-export declare type TSFSPathConfig = {
-    publicDirPath?: string;
-    envPath?: string;
-    manifestFilePath?: string;
-    viewsDirPath?: string;
-    logfileDirPath?: string;
-};
 export declare type TSFSRequiredEnvVars = string[];
 export declare type TSFSValidEnvValues = Record<string, string[] | ((...args: string[]) => boolean)>;
 export declare type TSFSDbOptions = {

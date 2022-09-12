@@ -1,7 +1,7 @@
 import path from 'path';
 import winston from 'winston';
-export const create = (tsfsPathConfig) => {
-    if (!tsfsPathConfig.logfileDirPath) {
+export const create = (logfileDirPath) => {
+    if (!logfileDirPath) {
         throw new Error('Logfile dir has to be configured');
     }
     const logger = winston.createLogger({
@@ -9,7 +9,7 @@ export const create = (tsfsPathConfig) => {
         format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
         transports: [
             new winston.transports.File({
-                filename: path.join(tsfsPathConfig.logfileDirPath, 'log-combined.json')
+                filename: path.join(logfileDirPath, 'log-combined.json')
             })
         ]
     });

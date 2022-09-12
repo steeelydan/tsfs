@@ -13,7 +13,7 @@ export declare const WebApp: {
         setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;
     };
     PublicFiles: {
-        serve: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
+        serve: (app: import("express").Express, publicFilesPath: string) => void;
     };
     Session: {
         /**
@@ -30,7 +30,7 @@ export declare const WebApp: {
         };
     };
     Templating: {
-        setup: (app: import("express").Express, tsfsPathConfig: import("./types.js").TSFSPathConfig) => void;
+        setup: (app: import("express").Express, viewsInBuildDirPath: string, manifestFilePath?: string | undefined, layoutsDirPath?: string | undefined) => void;
     };
 };
 /**
@@ -59,7 +59,7 @@ export declare const HttpServer: {
     };
 };
 export declare const Logger: {
-    createGeneralLogger: (tsfsPathConfig: import("./types.js").TSFSPathConfig) => import("winston").Logger;
+    createGeneralLogger: (logfileDirPath: string) => import("winston").Logger;
     setupRequestLogger: (generalLogger: import("winston").Logger, app: import("express").Express) => void;
 };
 /**

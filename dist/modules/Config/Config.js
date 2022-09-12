@@ -48,13 +48,14 @@ _a = Config;
 // static checkPublicDir = checkPublicDir;
 /**
  * Reads the .env file and prepares process.env & checks if all environment variables are set
+ * @param dotEnvFileDir .env file directory. If not specified, env vars are read from the shell environment.
  */
-Config.setupEnvironment = (dotEnvFilePath) => {
-    if (dotEnvFilePath) {
-        if (!isAbsolute(dotEnvFilePath)) {
-            throw new Error('Environment path must be absolute. Current value: ' + dotEnvFilePath);
+Config.setupEnvironment = (dotEnvFileDir) => {
+    if (dotEnvFileDir) {
+        if (!isAbsolute(dotEnvFileDir)) {
+            throw new Error('Environment path must be absolute. Current value: ' + dotEnvFileDir);
         }
-        const envFilePath = path.join(dotEnvFilePath, '.env');
+        const envFilePath = path.join(dotEnvFileDir, '.env');
         if (!fs.existsSync(envFilePath) || !fs.lstatSync(envFilePath).isFile()) {
             throw new Error('No .env file found under: ' + envFilePath);
         }

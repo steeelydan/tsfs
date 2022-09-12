@@ -1,8 +1,15 @@
 import express, { Express } from 'express';
-import { checkIfPathExistsAndIsAbsolute } from '../../helpers.js';
-import { TSFSPathConfig } from '../../types';
+import { existsSync, lstatSync } from 'fs';
+import isAbsolute from 'is-absolute';
 
-export const serve = (app: Express, tsfsPathConfig: TSFSPathConfig): void => {
-    checkIfPathExistsAndIsAbsolute(tsfsPathConfig.publicDirPath, 'publicDirPath');
-    tsfsPathConfig.publicDirPath && app.use(express.static(tsfsPathConfig.publicDirPath));
+export const serve = (app: Express, publicFilesPath: string): void => {
+    if (!existsSync(publicFilesPath)) {
+        throw new Error('Public files path does not exist: ' + publicFilesPath);
+    }
+
+    if (!isAbsolute(publicFilesPath) || !lstatSync(publicFilesPath).isDirectory()) {
+        throw new Error('Public files path must be absolute and a directory. Received: ' + publicFilesPath);
+    }
+
+    app.use(express.static(publicFilesPath));
 };
