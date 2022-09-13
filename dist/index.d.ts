@@ -10,7 +10,7 @@ export * from './modules/Config/Config.js';
  */
 export declare const WebApp: {
     I18n: {
-        setup: (app: import("express").Express, translations: import("i18next").Resource) => Promise<void>;
+        setup: (app: import("express").Express, translations: import("i18next").Resource, defaultLanguage: "de" | "en") => Promise<void>;
     };
     PublicFiles: {
         serve: (app: import("express").Express, publicFilesPath: string) => void;

@@ -1,18 +1,18 @@
 import i18next from 'i18next';
 import { default as i18nextMiddleware } from 'i18next-http-middleware';
-export const setup = async (app, translations) => {
+export const setup = async (app, translations, defaultLanguage) => {
     if (!translations) {
         throw new Error('No translations configured.');
     }
     await i18next.init({
-        lng: 'en',
+        lng: defaultLanguage,
         debug: false,
         resources: translations,
-        fallbackLng: 'en'
+        fallbackLng: defaultLanguage
     });
     await i18next.use(i18nextMiddleware.LanguageDetector).init({
         detection: { order: ['cookie'] },
-        preload: ['en']
+        preload: [defaultLanguage]
     });
     app.use(i18nextMiddleware.handle(i18next));
 };
