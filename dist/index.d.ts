@@ -25,7 +25,7 @@ export declare const WebApp: {
          *
          * @returns {sessionMiddleware: RequestHandler}
          */
-        setup: (app: import("express").Express, sequelize: import("sequelize/types/sequelize.js").Sequelize, sessionMaxAge: number) => {
+        setup: (app: import("express").Express, sequelize: import("sequelize").Sequelize, sessionMaxAge: number) => {
             sessionMiddleware: import("express").RequestHandler<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>;
         };
     };
@@ -82,9 +82,10 @@ export declare const Security: {
                 where: {
                     username?: string | undefined;
                     id?: string | undefined;
+                    email?: string | undefined;
                 };
             }) => any;
-        }) => {
+        }, usernamePropertyOverride?: string | undefined, passwordPropertyOverride?: string | undefined) => {
             passport: import("passport").PassportStatic;
         };
         /**
@@ -140,7 +141,7 @@ export declare const Database: {
      *
      * @returns Sequelize instance
      */
-    create: (dbConfig: import("./types.js").TSFSDbConfig) => Promise<import("sequelize/types/sequelize.js").Sequelize>;
+    create: (dbConfig: import("./types.js").TSFSDbConfig) => Promise<import("sequelize").Sequelize>;
 };
 export declare const Performance: {
     /**

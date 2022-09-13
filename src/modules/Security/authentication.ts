@@ -5,7 +5,9 @@ import bcrypt from 'bcryptjs';
 
 const setup = (
     app: Express,
-    User: { findOne: (where: { where: { username?: string; id?: string } }) => any } /* FIXME */
+    User: { findOne: (where: { where: { username?: string; id?: string; email?: string } }) => any } /* FIXME */,
+    usernamePropertyOverride?: string,
+    passwordPropertyOverride?: string
 ): { passport: PassportStatic } => {
     const LocalStrategy = PassportLocal.Strategy;
 
@@ -14,11 +16,20 @@ const setup = (
         password: string,
         done: (err: Error | null, user?: Express.User | false) => void
     ): Promise<void> => {
-        const user = await User.findOne({
-            where: {
-                username
-            }
-        });
+        let user;
+        if (!usernamePropertyOverride) {
+            user = await User.findOne({
+                where: {
+                    username
+                }
+            });
+        } else {
+            user = await User.findOne({
+                where: {
+                    [usernamePropertyOverride]: username
+                }
+            });
+        }
 
         if (!user) {
             console.log('no user');
@@ -26,7 +37,12 @@ const setup = (
             return done(null, false);
         }
 
-        const isValid = await bcrypt.compare(password, user.password);
+        let isValid;
+        if (!passwordPropertyOverride) {
+            isValid = await bcrypt.compare(password, user.password);
+        } else {
+            isValid = await bcrypt.compare(password, user[passwordPropertyOverride]);
+        }
 
         if (isValid) {
             console.log('login by ' + username);
@@ -39,7 +55,13 @@ const setup = (
         }
     };
 
-    const strategy = new LocalStrategy(verifyCallback);
+    const strategy = new LocalStrategy(
+        {
+            passwordField: passwordPropertyOverride || 'password',
+            usernameField: usernamePropertyOverride || 'username'
+        },
+        verifyCallback
+    );
 
     passport.use(strategy);
 

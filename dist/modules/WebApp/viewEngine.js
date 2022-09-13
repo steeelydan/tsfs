@@ -23,7 +23,7 @@ const setupHandlebars = (app, viewsInBuildDirPath, manifestFilePath, layoutsDirP
             },
             asset: assetMap
                 ? (assetKey) => {
-                    return 'assets/' + assetMap[assetKey];
+                    return assetMap[assetKey];
                 }
                 : undefined
         }

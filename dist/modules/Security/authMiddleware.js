@@ -1,5 +1,5 @@
 import passport from 'passport';
-export const authenticateLocal = passport.authenticate('local');
+export const authenticateLocal = passport.authenticate('local', { userProperty: 'email' });
 export const mustBeAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         next();

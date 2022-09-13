@@ -5,9 +5,10 @@ declare const setup: (app: Express, User: {
         where: {
             username?: string;
             id?: string;
+            email?: string;
         };
     }) => any;
-}) => {
+}, usernamePropertyOverride?: string, passwordPropertyOverride?: string) => {
     passport: PassportStatic;
 };
 export { setup };

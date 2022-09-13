@@ -31,7 +31,7 @@ const setupHandlebars = (
             },
             asset: assetMap
                 ? (assetKey: string): string => {
-                      return 'assets/' + assetMap![assetKey];
+                      return assetMap![assetKey];
                   }
                 : undefined
         }
