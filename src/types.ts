@@ -11,7 +11,7 @@ export type Environment = {
 
 export type TSFSCreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
 
-export type TSFSUserRole = 'admin' | 'user';
+export type TSFSTestRole = 'admin' | 'editor' | 'user';
 
 export type TSFSRequestUser = {
     id: string;

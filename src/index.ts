@@ -1,5 +1,5 @@
 import { setup as setupAuthentication } from './modules/Security/authentication.js';
-import { authenticateLocal, mustBeAdmin, mustBeAuthenticated } from './modules/Security/authMiddleware.js';
+import { authenticateLocal, mustBeAuthenticated } from './modules/Security/authMiddleware.js';
 import { setup as setupCookies } from './modules/HttpServer/cookies.js';
 import { setup as setupCsrfProtection } from './modules/Security/csrfProtection.js';
 import { create as createDatabase } from './modules/Database/database.js';
@@ -107,15 +107,16 @@ export const Security = {
          * @param res Express response
          * @param next Express next
          */
-        mustBeAuthenticated,
+        mustBeAuthenticated
         /**
          * Middleware to block non-admin requests from accessing the endpoint
          *
+         * @param role The role the user needs to have
          * @param req Express request
          * @param res Express response
          * @param next Express next
          */
-        mustBeAdmin
+        // mustBeRole: mustHaveRole
     },
     CsrfProtection: {
         /**

@@ -1,3 +1,4 @@
+import { ExpressHandlebars } from 'express-handlebars';
 import { Express } from 'express';
 /**
  *
@@ -6,4 +7,4 @@ import { Express } from 'express';
  * @param manifestFilePath The path for the bundler-generated manifest file (only webpack supported atm)
  * @param layoutsDirPath The path for handlebars layouts (optional; uses viewsInBuildDirPath/layouts per default)
  */
-export declare const setup: (app: Express, viewsInBuildDirPath: string, manifestFilePath?: string, layoutsDirPath?: string) => void;
+export declare const setup: (app: Express, viewsInBuildDirPath: string, manifestFilePath?: string, layoutsDirPath?: string) => ExpressHandlebars;

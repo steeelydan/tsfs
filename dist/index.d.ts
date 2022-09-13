@@ -30,7 +30,7 @@ export declare const WebApp: {
         };
     };
     Templating: {
-        setup: (app: import("express").Express, viewsInBuildDirPath: string, manifestFilePath?: string | undefined, layoutsDirPath?: string | undefined) => void;
+        setup: (app: import("express").Express, viewsInBuildDirPath: string, manifestFilePath?: string | undefined, layoutsDirPath?: string | undefined) => import("express-handlebars").ExpressHandlebars;
     };
 };
 /**
@@ -103,14 +103,6 @@ export declare const Security: {
          * @param next Express next
          */
         mustBeAuthenticated: (req: import("express").Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: import("express").Response<any, Record<string, any>>, next: import("express").NextFunction) => void;
-        /**
-         * Middleware to block non-admin requests from accessing the endpoint
-         *
-         * @param req Express request
-         * @param res Express response
-         * @param next Express next
-         */
-        mustBeAdmin: (req: import("express").Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: import("express").Response<any, Record<string, any>>, next: import("express").NextFunction) => void;
     };
     CsrfProtection: {
         /**

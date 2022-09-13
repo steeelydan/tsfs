@@ -30,6 +30,7 @@ const setupHandlebars = (app, viewsInBuildDirPath, manifestFilePath, layoutsDirP
     });
     app.engine('.hbs', hbs.engine);
     app.set('view engine', '.hbs');
+    return hbs;
 };
 /**
  *
@@ -42,7 +43,7 @@ export const setup = (app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath
     if (!viewsInBuildDirPath) {
         throw new Error('Views path has to be configured');
     }
-    setupHandlebars(app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath);
+    const hbs = setupHandlebars(app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath);
     if (process.env.NODE_ENV === 'development') {
         if (manifestFilePath) {
             console.log(`Views engine setup in development mode with manifest file path.\nViews path: ${viewsInBuildDirPath}\nManifest file path: ${manifestFilePath}\nWatching manifest file path.`);
@@ -68,4 +69,5 @@ export const setup = (app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath
     //     res.locals.csrfToken = req.csrfToken();
     //     next();
     // });
+    return hbs;
 };

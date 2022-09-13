@@ -8,11 +8,15 @@ export const mustBeAuthenticated = (req, res, next) => {
         res.status(403).json({ msg: 'Not authorized' });
     }
 };
-export const mustBeAdmin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    }
-    else {
-        res.status(403).json({ msg: 'Not authorized' });
-    }
-};
+// export const mustHaveRole = <UserRolesType extends string>(
+//     role: UserRolesType,
+//     req: Request,
+//     res: Response,
+//     next: NextFunction
+// ): void => {
+//     if (req.user && req.user.role === role) {
+//         next();
+//     } else {
+//         res.status(403).json({ msg: 'Not authorized' });
+//     }
+// };

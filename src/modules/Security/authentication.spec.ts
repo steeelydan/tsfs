@@ -6,7 +6,7 @@ import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import { getTestDatabase } from '../../testHelpers.js';
 import { CoreTestModels, initializeCoreTestModels } from '../../testModels.js';
-import { TSFSDbConfig, TSFSRequestUser, TSFSUserRole } from '../../types';
+import { TSFSDbConfig, TSFSRequestUser, TSFSTestRole } from '../../types';
 import { mustBeAdmin, mustBeAuthenticated } from './authMiddleware';
 import { HttpServer, Security, WebApp } from '../../index.js';
 
@@ -35,9 +35,9 @@ beforeAll(async (): Promise<void> => {
     models = await initializeCoreTestModels(sequelize);
     process.env.SESSION_SECRET = 'abc';
 
-    const adminUser = { username: 'adminuser', role: 'admin' as TSFSUserRole, password: bcrypt.hashSync('123') };
+    const adminUser = { username: 'adminuser', role: 'admin' as TSFSTestRole, password: bcrypt.hashSync('123') };
     await models.CoreTestUser.create(adminUser);
-    const nonAdminUser = { username: 'nonadminuser', role: 'user' as TSFSUserRole, password: bcrypt.hashSync('cba') };
+    const nonAdminUser = { username: 'nonadminuser', role: 'user' as TSFSTestRole, password: bcrypt.hashSync('cba') };
     await models.CoreTestUser.create(nonAdminUser);
 });
 

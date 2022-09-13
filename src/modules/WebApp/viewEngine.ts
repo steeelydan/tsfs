@@ -1,4 +1,4 @@
-import { create } from 'express-handlebars';
+import { create, ExpressHandlebars } from 'express-handlebars';
 import i18next from 'i18next';
 import fs from 'fs';
 import { Express } from 'express';
@@ -8,7 +8,7 @@ const setupHandlebars = (
     viewsInBuildDirPath: string,
     manifestFilePath?: string,
     layoutsDirPath?: string
-): void => {
+): ExpressHandlebars => {
     console.log('Client manifest updated.');
     let assetMap: Record<string, string> | null = null;
 
@@ -39,6 +39,8 @@ const setupHandlebars = (
 
     app.engine('.hbs', hbs.engine);
     app.set('view engine', '.hbs');
+
+    return hbs;
 };
 
 /**
@@ -53,12 +55,12 @@ export const setup = (
     viewsInBuildDirPath: string,
     manifestFilePath?: string,
     layoutsDirPath?: string
-): void => {
+): ExpressHandlebars => {
     if (!viewsInBuildDirPath) {
         throw new Error('Views path has to be configured');
     }
 
-    setupHandlebars(app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath);
+    const hbs = setupHandlebars(app, viewsInBuildDirPath, manifestFilePath, layoutsDirPath);
 
     if (process.env.NODE_ENV === 'development') {
         if (manifestFilePath) {
@@ -93,4 +95,6 @@ export const setup = (
     //     res.locals.csrfToken = req.csrfToken();
     //     next();
     // });
+
+    return hbs;
 };

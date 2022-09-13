@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import passport from 'passport';
 
 export const authenticateLocal = passport.authenticate('local', { userProperty: 'email' });
@@ -11,10 +11,15 @@ export const mustBeAuthenticated = (req: Request, res: Response, next: NextFunct
     }
 };
 
-export const mustBeAdmin = (req: Request, res: Response, next: NextFunction): void => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).json({ msg: 'Not authorized' });
-    }
-};
+// export const mustHaveRole = <UserRolesType extends string>(
+//     role: UserRolesType,
+//     req: Request,
+//     res: Response,
+//     next: NextFunction
+// ): void => {
+//     if (req.user && req.user.role === role) {
+//         next();
+//     } else {
+//         res.status(403).json({ msg: 'Not authorized' });
+//     }
+// };

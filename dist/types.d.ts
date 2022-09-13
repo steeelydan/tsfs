@@ -7,7 +7,7 @@ export declare type Environment = {
     PORT: number;
 };
 export declare type TSFSCreationAttributes<T> = Omit<T, 'id' | 'createdAt' | 'updatedAt'>;
-export declare type TSFSUserRole = 'admin' | 'user';
+export declare type TSFSTestRole = 'admin' | 'editor' | 'user';
 export declare type TSFSRequestUser = {
     id: string;
     username: string;
